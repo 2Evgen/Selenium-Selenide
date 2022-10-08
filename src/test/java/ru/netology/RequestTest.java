@@ -1,6 +1,7 @@
 package ru.netology;
 
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 
 import java.util.List;
 
@@ -21,8 +23,9 @@ public class RequestTest {
     private WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "./driver/win/chromedriver.exe");
+    static void setupAll() {
+
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
@@ -43,6 +46,7 @@ public class RequestTest {
     @Test
     void shouldTest() {
         driver.get("http://localhost:9999/");
+        
         List<WebElement> inputs = driver.findElements(By.tagName("input"));
         inputs.get(0).sendKeys("Гришковец Марина");
         inputs.get(1).sendKeys("+79953285555");
