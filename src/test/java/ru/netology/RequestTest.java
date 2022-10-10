@@ -46,10 +46,12 @@ public class RequestTest {
     @Test
     void shouldTest() {
         driver.get("http://localhost:9999/");
-        
-        List<WebElement> inputs = driver.findElements(By.tagName("input"));
-        inputs.get(0).sendKeys("Гришковец Марина");
-        inputs.get(1).sendKeys("+79953285555");
+
+        //List<WebElement> inputs = driver.findElements(By.tagName("input"));
+        //inputs.get(0).sendKeys("Гришковец Марина");
+        //inputs.get(1).sendKeys("+79953285555");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Гришковец-Ильина Марина");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79998889988");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button__text")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
